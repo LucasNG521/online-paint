@@ -1,0 +1,160 @@
+body{
+    margin:0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+.container-fluid{
+    padding:auto 0;
+}
+ul {
+    padding-left:2vw;
+    margin:0;
+}
+
+li {
+    list-style-type: none;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+
+.row {
+    display: flex;
+    align-items: center;
+}
+
+/* CANVAS SIZE AND POSITION */
+.canvas{
+    border-left:1px rgba(116, 116, 116, 0.2) dotted;
+    position: absolute;
+    top:0;
+    left: 80px;
+    right: 0;
+    bottom: 0;
+}
+
+#canvas-draft{
+    background-color: transparent;
+}
+
+/* DROPDOWN MENU */
+.dropdown {
+    position: relative;   
+}
+
+.dropdown-menu {
+    width: 2vw;
+}
+
+.stroke-menu {
+    width: 5vw;
+}
+
+.buttons {
+    display:flex;
+    flex-direction: column;
+    margin:0;
+}
+
+.btn {
+    width: 50px;
+    background-color: white;
+    border-radius: 20;
+    border-radius:0;
+    font-size: 1.8em;
+}
+
+.btn:active{
+    background: black;
+    color: white;
+    border: 1px dotted white;
+}
+
+.btn:focus{
+    background: black;
+    color: white;
+    border: 1px solid white;
+    outline:none;
+}
+
+/* RANGE SLIDER */
+.slider {
+    margin-left: 20px;
+    padding-top: 3vh;
+    position: relative;
+}
+
+#size-slider {
+    width: 50px;
+}
+
+
+#size-field {
+    width: 5vw;
+}
+
+canvas:hover {
+    cursor:crosshair;
+}
+
+#canvas-container{
+    display:hidden;
+} 
+ 
+
+#canvas-real {
+    background-color: white;
+    background-color: transparent;
+}
+
+/*COLOR PICKER*/
+#color-menu {
+    position: absolute;
+    padding-top: 2vh;
+    padding-left: 30px;
+} 
+
+ #color-input {
+    display: none;
+    padding-top: 5vh;
+ }
+/*  
+ #color-input:checked ~ #color-picker {
+    opacity: 0;
+ } */
+ 
+ #color-label {
+    position: relative;
+    height: 30px;
+    width: 30px;
+ }
+ 
+ #color-picker {
+    z-index: 3;
+    position: absolute;
+    bottom: 1px;
+    left: 82px;
+    background-color: white;
+    height: 150px;
+    width: 185px;
+    opacity: 1;
+    padding: 4px;
+    box-sizing: initial;
+    display:none;
+ }
+
+ 
+#canvas-bottom {
+
+    background-image: url("../../ADD_BACKGROUND.PNG");
+    background-repeat: no-repeat;
+    display: none;
+}
+ 
+#canvas-bottom.show {
+    display: block;
+}

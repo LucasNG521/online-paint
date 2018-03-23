@@ -1,0 +1,147 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--BOOTSTRAP CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <!--FONT AWESOME-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--CUSTOM CSS-->
+    <link href="assets/css/styles.css" rel="stylesheet" type='text/css'>
+    <title>Online Paint Cohort 6</title>
+</head>
+
+<body onload="cPush()">
+    <!-- FUNCTION NAVIGATION -->
+    <div class="container-fluid buttons ">
+        <!-- SAVE FUNCTION -->
+        <button class="btn" onclick="saveFile()">
+            <i class="fa fa-save"></i>
+            <a id="download"></a>
+        </button>
+        <!-- UNDO FUNCTION -->
+        <div class="btn fa fa-undo" id="undo"></div>
+        <!-- REDO FUNCTION -->
+        <div class="btn fa fa-retweet" id="redo"></div>
+        <!-- RESET FUNCTION -->
+        <div class="btn fa fa-trash" id="reset-all"></div>
+        <!-- PAINT AND SHAPE FUNCTIONS -->
+        <div tabindex="1" class="btn fa fa-paint-brush" id="drawing-line"></div>
+        <div tabindex="2" class="btn fa fa-star-half" id="drawing-polygon"></div>
+        <div tabindex="3" class="btn fa fa-font" id="text-input"></div>
+        <!-- SHAPE FUNCTIONS INCLUDE ALTERNATIVE PATTERN MENUS -->
+        <!-- RECTANGLE -->
+        <div tabindex="4" class="btn fa fa-square" id="drawing-rectangle"></div>
+        <div class="dropdown stroke-menu">
+            <div tabindex="5" class="dropdown-menu" id="alternate-rectangle" aria-labelledby="drawing-rectangle">
+                <ul>
+                    <li class="dropdown-item" id="drawing-rectangle-matrix">Matrix</li>
+                    <li class="dropdown-item" id="drawing-rectangle-portal">Portal</li>
+                    <li class="dropdown-item" id="drawing-rectangle-hollow">Hollow</li>
+                </ul>
+            </div>
+        </div>
+        <!-- SQUARE -->
+        <div tabindex="6" class="btn" id="drawing-square">^2</div>
+        <div class="dropdown stroke-menu">
+            <div class="dropdown-menu" id="alternate-square" aria-labelledby="drawing-square">
+                <ul>
+                    <li class="dropdown-item" id="drawing-square-matrix">Matrix</li>
+                    <li class="dropdown-item" id="drawing-square-hollow">Hollow</li>
+                </ul>
+            </div>
+        </div>
+        <!-- CIRCLE -->
+        <div tabindex="7" class="btn fa fa-circle" id="drawing-circle"></div>
+        <div class="dropdown stroke-menu">
+            <div class="dropdown-menu" id="alternate-circle" aria-labelledby="drawing-circle">
+                <ul>
+                    <li class="dropdown-item" id="drawing-circle-matrix">Matrix</li>
+                    <li class="dropdown-item" id="drawing-circle-hollow">Hollow</li>
+                </ul>
+            </div>
+        </div>
+        <!-- ELLIPSE -->
+        <div tabindex="8" class="btn fa fa-adjust" id="drawing-ellipse"></div>
+        <div class="dropdown stroke-menu">
+            <div class="dropdown-menu" id="alternate-ellipse" aria-labelledby="drawing-ellipse">
+                <ul>
+                    <li class="dropdown-item" id="drawing-ellipse-matrix">Matrix</li>
+                    <li class="dropdown-item" id="drawing-ellipse-hollow">Hollow</li>
+                    <li class="dropdown-item" id="drawing-ellipse-portal">Portal</li>
+                </ul>
+            </div>
+        </div>
+        <!-- ERASER -->
+        <div tabindex="9" class="btn fa fa-eraser" id="eraser"></div>
+        <!-- EYEDROPPER -->
+        <div class="btn fa fa-eyedropper" id="eyedropper"></div>
+        <!-- ADD BACKGROUND -->
+        <div class="btn fa fa-th" id="add-bg"></div>
+    </div>
+    <!-- LINE/FONT SIZE SLIDER -->
+    <div class="slider">
+        <input type="range" min="1" max="24" value=1 id="size-slider">
+        <span id="size-field">1</span>
+        <span>px</span>
+    </div>
+    </div>
+    <!-- COLOR PICKER -->
+    <div id="color-menu">
+        <label for="color-input" id="color-label" style="background-color: red"></label>
+        <input type="checkbox" id="color-input" checked>
+
+        <div id="color-picker">
+            <canvas id="color-strip" height="150" width="30"></canvas>
+            <canvas id="color-block" height="150" width="150"></canvas>
+        </div>
+    </div>
+
+
+    <!-- CANVAS CONTAINER -->
+    <div id="canvas-container">
+        <!-- "canvas-bottom" for add background -->
+        <canvas id="canvas-bottom" class="canvas" width='1280px' height='720px'></canvas> 
+        <canvas id="canvas-real" class="canvas" width='1280px' height='720px'></canvas>
+        <canvas id="canvas-draft" class="canvas" width='1280px' height='720px'></canvas>
+    </div>
+    <!--JQUERY CALLS-->
+    <script type='text/javascript' src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script type='text/javascript' src="assets/js/canvas-common.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-line.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-rectangle.js"></script>
+    <script type='text/javascript' src="assets/js/text-input.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-circle.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-polygon.js"></script>
+    <script type='text/javascript' src="assets/js/eyedropper.js"></script>
+    <script type='text/javascript' src="assets/js/colorpicker.js"></script>
+    <script type='text/javascript' src="assets/js/eraser.js"></script>
+    <script type='text/javascript' src="assets/js/save.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-rectangle-matrix.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-rectangle-portal.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-rectangle-hollow.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-square.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-square-hollow.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-square-matrix.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-circle-hollow.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-circle-matrix.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-ellipse.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-ellipse-hollow.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-ellipse-matrix.js"></script>
+    <script type='text/javascript' src="assets/js/drawing-ellipse-portal.js"></script>
+    <script type='text/javascript' src="assets/js/undoredo.js"></script>
+    <script type='text/javascript'>
+
+        // document.body.onload = cPush; // recommended approach
+        currentFunction = new DrawingLine(contextReal, contextDraft);
+
+
+    </script>
+</body>
+
+</html>
